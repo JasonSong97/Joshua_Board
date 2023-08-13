@@ -34,24 +34,27 @@
     }
     .btn {
         margin-top: 1rem;
-        width: 100%;
+        width: 20%;
     }
 </style>
 
 <div class="container my-3">
-    <form action="/s/user/${user.id}/updateProfile" method="post" enctype="multipart/form-data" onsubmit="return valid()">
+    <h2 class="text-center">프로필 사진 변경 페이지</h2>
+    <form>
         <div class="form-group">
-            <img src="/upload/${user.profile}" alt="Current Photo" class="img-fluid" id="imagePreview">
+            <img src="/images/dora.png" alt="Current Photo" class="img-fluid" id="imagePreview">
         </div>
         <div class="form-group">
             <input type="file" class="form-control" id="profile" name="profile" onchange="chooseImage(this)">
         </div>
-        <button class="btn btn-primary">사진변경</button>
+        <button type="submit" class="btn btn-primary">사진변경</button>
     </form>
 </div>
 
 <script>
     function chooseImage(obj){
+        //console.log(obj);
+        //console.log(obj.files);
         let f  = obj.files[0];
         if(!f.type.match("image.*")){
             alert("이미지를 등록해야 합니다.");

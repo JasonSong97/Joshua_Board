@@ -4,13 +4,13 @@
 
 <div class="container my-3">
     <div class="container">
-        <form action="/login" method="post">
+        <form>
             <div class="form-group mb-2">
-                <input type="text" name="username" class="form-control" placeholder="Enter username" value="ssar">
+                <input type="text" name="username" class="form-control" placeholder="Enter username">
             </div>
 
             <div class="form-group mb-2">
-                <input type="password" name="password" class="form-control" placeholder="Enter password" value="1234">
+                <input type="password" name="password" class="form-control" placeholder="Enter password">
             </div>
 
             <button type="submit" class="btn btn-primary">로그인</button>

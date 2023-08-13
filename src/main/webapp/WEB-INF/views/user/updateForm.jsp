@@ -4,17 +4,17 @@
 
 <div class="container my-3">
     <div class="container">
-        <form action="/s/user/${user.id}/update" method="post">
+        <form>
             <div class="form-group mb-2">
-                <input type="text" name="username" class="form-control" placeholder="Enter username" value="${user.username}" readonly>
+                <input type="text" name="username" class="form-control" placeholder="Enter username" value="ssar">
             </div>
 
             <div class="form-group mb-2">
-                <input type="password" name="password" class="form-control" placeholder="Enter password" value="${user.password}">
+                <input type="password" name="password" class="form-control" placeholder="Enter password" value="1234">
             </div>
 
             <div class="form-group mb-2">
-                <input type="email" name="email" class="form-control" placeholder="Enter email" value="${user.email}">
+                <input type="email" name="email" class="form-control" placeholder="Enter email" value="ssar@nate.com">
             </div>
 
             <button class="btn btn-primary">회원수정</button>

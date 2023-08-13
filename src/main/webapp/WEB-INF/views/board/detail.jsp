@@ -4,33 +4,32 @@
 
 
 <div class="container my-3">
-    <c:if test="${sessionUser.id == board.user.id}">
         <div class="mb-3 d-flex">
-            <a href="/s/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
-            <form action="/s/board/${board.id}/delete" method="post">
+            <a href="/board/1/updateForm" class="btn btn-warning">수정</a>
+            <form>
+                <input type="hidden" name="id" />
                 <button class="btn btn-danger">삭제</button>
             </form>
         </div>
-    </c:if>
 
 
     <div class="mb-2 d-flex justify-content-end">
         글 번호 :
         <span id="id" class="me-3">
-            <i>${board.id}</i>
+            <i>1</i>
         </span>
         작성자 :
         <span class="me-3">
-            <i>${board.user.username}</i>
+            <i>ssar</i>
         </span>
     </div>
 
     <div>
-        <h1><b>${board.title}</b></h1>
+        <h1><b>글제목</b></h1>
     </div>
     <hr/>
     <div>
-        <div>${board.content}</div>
+        <div>글내용</div>
     </div>
     <hr/>
     <i id="heart" class="fa-regular fa-heart fa-lg"></i>
@@ -53,7 +52,7 @@
                 <div>댓글내용입니다</div>
                 <div class="d-flex">
                     <div class="font-italic">작성자 : cos &nbsp;</div>
-                    <button onClick="deleteReply()" class="badge bg-secondary">삭제</button>
+                    <button onClick="replyDelete()" class="badge bg-secondary">삭제</button>
                 </div>
             </li>
         </ul>
