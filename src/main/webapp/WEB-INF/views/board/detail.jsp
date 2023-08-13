@@ -20,7 +20,7 @@
         </span>
         작성자 :
         <span class="me-3">
-            <i>ssar</i>
+            <i>song</i>
         </span>
     </div>
 

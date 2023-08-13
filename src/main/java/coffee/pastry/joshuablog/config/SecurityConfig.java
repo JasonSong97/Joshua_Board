@@ -26,9 +26,11 @@ public class SecurityConfig {
                     .loginProcessingUrl("/login")
                     .successHandler(((request, response, authentication) -> {
                          log.debug("디버그 : 로그인 성공");
+                         response.sendRedirect("/");
                     }))
                     .failureHandler(((request, response, exception) -> {
                          log.debug("디버그 : 로그인 실패 : " + exception.getMessage());
+                         response.sendRedirect("/loginForm");
                     }));
 
           http.authorizeRequests(
