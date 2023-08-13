@@ -20,6 +20,7 @@ public class SecurityConfig {
      @Bean // 권한 주소 설정
      SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
           http.csrf().disable();
+          http.headers().frameOptions().disable();
           http.formLogin()
                     .loginPage("/loginForm")
                     .loginProcessingUrl("/login")
