@@ -1,4 +1,4 @@
-package coffee.pastry.joshuablog.blog;
+package coffee.pastry.joshuablog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

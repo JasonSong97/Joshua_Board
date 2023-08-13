@@ -8,8 +8,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Configuration
 @Slf4j
+@Configuration
 public class SecurityConfig {
 
      @Bean
@@ -17,23 +17,23 @@ public class SecurityConfig {
           return new BCryptPasswordEncoder();
      }
 
-     @Bean
+     @Bean // 권한 주소 설정
      SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
           http.csrf().disable();
           http.formLogin()
                     .loginPage("/loginForm")
                     .loginProcessingUrl("/login")
-                    .successHandler((request, response, authentication) -> {
+                    .successHandler(((request, response, authentication) -> {
                          log.debug("디버그 : 로그인 성공");
-
-                    })
-                    .failureHandler((request, response, exception) -> {
+                    }))
+                    .failureHandler(((request, response, exception) -> {
                          log.debug("디버그 : 로그인 실패 : " + exception.getMessage());
+                    }));
 
-                    });
           http.authorizeRequests(
-                    authorize -> authorize.antMatchers("/auth/**").authenticated()
+                    authorize -> authorize.antMatchers("/s/**").authenticated()
                               .anyRequest().permitAll());
+
           return http.build();
      }
 }
