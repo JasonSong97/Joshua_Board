@@ -15,4 +15,9 @@ public class BoardController {
      public String main(@AuthenticationPrincipal MyUserDetails myUserDetails) {
           return "board/main";
      }
+
+     @GetMapping("/s/board/saveForm")
+     public String saveForm() {
+          return "board/saveForm";
+     }
 }
