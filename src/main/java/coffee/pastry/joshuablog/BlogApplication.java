@@ -1,6 +1,8 @@
 package coffee.pastry.joshuablog;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,43 +17,26 @@ import coffee.pastry.joshuablog.model.user.User;
 import coffee.pastry.joshuablog.model.user.UserRepository;
 
 @SpringBootApplication
-public class BlogApplication {
+public class BlogApplication extends DummyEntity {
 
 	@Profile("dev")
 	@Bean
 	CommandLineRunner init(UserRepository userRepository, BoardRepository boardRepository,
 			BCryptPasswordEncoder passwordEncoder) {
 		return args -> {
-			User song = User.builder()
-					.username("song")
-					.password(passwordEncoder.encode("1234"))
-					.email("song@nate.com")
-					.role("USER")
-					.profile("person.png")
-					.status(true)
-					.build();
-			User park = User.builder()
-					.username("park")
-					.password(passwordEncoder.encode("1234"))
-					.email("park@nate.com")
-					.role("USER")
-					.profile("person.png")
-					.build();
+
+			User song = newUser("song", passwordEncoder);
+			User park = newUser("park", passwordEncoder);
 			userRepository.saveAll(Arrays.asList(song, park));
 
-			Board b1 = Board.builder()
-					.title("제목1")
-					.content("내용1")
-					.user(song)
-					.thumbnail("/upload/person.png")
-					.build();
-			Board b2 = Board.builder()
-					.title("제목2")
-					.content("내용2")
-					.user(park)
-					.thumbnail("/upload/person.png")
-					.build();
-			boardRepository.saveAll(Arrays.asList(b1, b2));
+			List<Board> boardList = new ArrayList<>();
+			for (int i = 1; i < 11; i++) {
+				boardList.add(newBoard("제목" + i, song));
+			}
+			for (int i = 11; i < 21; i++) {
+				boardList.add(newBoard("제목" + i, park));
+			}
+			boardRepository.saveAll(boardList);
 		};
 	}
 

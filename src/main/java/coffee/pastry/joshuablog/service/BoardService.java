@@ -1,7 +1,5 @@
 package coffee.pastry.joshuablog.service;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,7 +33,7 @@ public class BoardService {
           }
      }
 
-     public Page<Board> 게시글목록보기(Pageable pageable) {
-          return boardQueryRepository.findAll(pageable);
+     public Page<Board> 게시글목록보기(int page) {
+          return boardQueryRepository.findAll(page);
      }
 }
