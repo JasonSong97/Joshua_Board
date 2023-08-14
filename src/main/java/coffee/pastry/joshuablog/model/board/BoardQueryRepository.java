@@ -20,6 +20,7 @@ public class BoardQueryRepository {
      private final int SIZE = 8;
 
      public Page<Board> findAll(int page) {
+
           int startPosition = page * 8;
 
           List<Board> boardListPS = em.createQuery("select b from Board b join fetch b.user order by b.id desc")

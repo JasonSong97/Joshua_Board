@@ -1,10 +1,10 @@
 package coffee.pastry.joshuablog.service;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import coffee.pastry.joshuablog.core.exception.ssr.Exception400;
 import coffee.pastry.joshuablog.dto.board.BoardRequestDto;
 import coffee.pastry.joshuablog.model.board.Board;
 import coffee.pastry.joshuablog.model.board.BoardQueryRepository;
@@ -35,5 +35,12 @@ public class BoardService {
 
      public Page<Board> 게시글목록보기(int page) {
           return boardQueryRepository.findAll(page);
+     }
+
+     public Board 게시글상세보기(Long id) {
+          Board boardPS = boardRepository.findByIdJoinFetchUser(id).orElseThrow(
+                    () -> new Exception400("id", "게시글 아이디를 찾을 수 없습니다. "));
+
+          return boardPS;
      }
 }
