@@ -34,3 +34,6 @@ logging:
   level:
     '[coffee.pastry.joshuablog]': DEBUG
     '[org.hibernate.type]': TRACE
+
+# file:
+#   path: 

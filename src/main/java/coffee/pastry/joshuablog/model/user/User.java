@@ -49,4 +49,8 @@ public class User {
      protected void onUpdate() {
           this.updatedAt = LocalDateTime.now();
      }
+
+     public void changeProfile(String profile) {
+          this.profile = profile;
+     }
 }

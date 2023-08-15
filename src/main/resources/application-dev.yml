@@ -30,7 +30,14 @@ spring:
   output:
     ansi:
       enabled: always
+  servlet:
+    multipart: 
+      max-file-size: 10MB
+      enabled: true
 logging:
   level:
     '[coffee.pastry.joshuablog]': DEBUG
     '[org.hibernate.type]': TRACE
+
+file:
+  path: ./upload/
