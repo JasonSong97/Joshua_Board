@@ -37,8 +37,13 @@ public class BoardService {
           }
      }
 
-     public Page<Board> 게시글목록보기(int page) {
-          return boardQueryRepository.findAll(page);
+     public Page<Board> 게시글목록보기(int page, String keyword) {
+          if (keyword.isBlank()) {
+               return boardQueryRepository.findAll(page);
+          } else {
+               Page<Board> boardPGPS = boardQueryRepository.findAllByKeyword(page, keyword);
+               return boardPGPS;
+          }
      }
 
      public Board 게시글상세보기(Long id) {

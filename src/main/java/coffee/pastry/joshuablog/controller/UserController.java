@@ -61,11 +61,11 @@ public class UserController {
                MultipartFile profile,
                @AuthenticationPrincipal MyUserDetails myUserDetails) {
           if (id != myUserDetails.getUser().getId()) {
-               throw new Exception403("권한이 없습니다");
+               throw new Exception403("권한이 없습니다. ");
           }
 
           if (profile.isEmpty()) {
-               throw new Exception400("profile", "사진이 전송되지 않았습니다");
+               throw new Exception400("profile", "사진이 전송되지 않았습니다. ");
           }
 
           User userPS = userService.프로필사진수정(profile, id);
