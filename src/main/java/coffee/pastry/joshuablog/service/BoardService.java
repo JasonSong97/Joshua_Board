@@ -27,7 +27,7 @@ public class BoardService {
      public void 글쓰기(BoardRequestDto.SaveInDto saveInDto, Long userId) {
           try {
                User userPS = userRepository.findById(userId).orElseThrow(
-                         () -> new RuntimeException("유저를 찾을 수 없습니다. "));
+                         () -> new Exception400("id", "유저를 찾을 수 없습니다. "));
 
                String thumbnail = MyParseUtil.getThumbnail(saveInDto.getContent());
 

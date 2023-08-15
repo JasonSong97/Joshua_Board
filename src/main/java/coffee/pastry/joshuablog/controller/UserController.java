@@ -1,10 +1,12 @@
 package coffee.pastry.joshuablog.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +28,7 @@ public class UserController {
      private final HttpSession session;
 
      @PostMapping("/join")
-     public String join(UserRequestDto.JoinInDto joinInDto) {
+     public String join(@Valid UserRequestDto.JoinInDto joinInDto, Errors errors) {
           userService.회원가입(joinInDto);
           return "redirect:/loginForm";
      }

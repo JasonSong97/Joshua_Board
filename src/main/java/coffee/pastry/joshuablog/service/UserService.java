@@ -1,11 +1,14 @@
 package coffee.pastry.joshuablog.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import coffee.pastry.joshuablog.core.exception.csr.ExceptionApi400;
 import coffee.pastry.joshuablog.core.exception.ssr.Exception400;
 import coffee.pastry.joshuablog.core.exception.ssr.Exception500;
 import coffee.pastry.joshuablog.core.util.MyFileUtil;
@@ -26,11 +29,15 @@ public class UserService {
 
      @Transactional
      public void 회원가입(UserRequestDto.JoinInDto joinInDto) {
+          Optional<User> userOP = userRepository.findByUsername(joinInDto.getUsername());
+          if (userOP.isPresent()) {
+               throw new Exception400("username", "유저네임이 중복되었습니다. ");
+          }
           try {
                joinInDto.setPassword(passwordEncoder.encode(joinInDto.getPassword()));
                userRepository.save(joinInDto.toEntity());
           } catch (Exception e) {
-               throw new RuntimeException("회원가입 오류 : " + e.getMessage());
+               throw new Exception500("회원가입 실패 : " + e.getMessage());
           }
 
      }
@@ -47,11 +54,18 @@ public class UserService {
                String uuidImageName = MyFileUtil.write(uploadFolder, profile);
 
                User userPS = userRepository.findById(id)
-                         .orElseThrow(() -> new Exception500("로그인 된 유저가 DB에 존재하지 않음"));
+                         .orElseThrow(() -> new Exception500("로그인 된 유저가 DB에 존재하지 않습니다. "));
                userPS.changeProfile(uuidImageName);
                return userPS;
           } catch (Exception e) {
                throw new Exception500("프로필 사진 등록 실패 : " + e.getMessage());
+          }
+     }
+
+     public void 유저네임중복체크(String username) {
+          Optional<User> userOP = userRepository.findByUsername(username);
+          if (userOP.isPresent()) {
+               throw new ExceptionApi400("username", "유저네임이 중복되었습니다. ");
           }
      }
 }

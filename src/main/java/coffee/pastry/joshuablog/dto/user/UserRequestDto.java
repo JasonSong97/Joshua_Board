@@ -1,5 +1,7 @@
 package coffee.pastry.joshuablog.dto.user;
 
+import javax.validation.constraints.NotEmpty;
+
 import coffee.pastry.joshuablog.model.user.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,8 +12,11 @@ public class UserRequestDto {
      @Setter
      public static class JoinInDto {
 
+          @NotEmpty
           private String username;
+          @NotEmpty
           private String password;
+          @NotEmpty
           private String email;
 
           public User toEntity() {
