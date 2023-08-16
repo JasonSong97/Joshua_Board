@@ -53,4 +53,9 @@ public class User {
      public void changeProfile(String profile) {
           this.profile = profile;
      }
+
+     public void update(String password, String email) {
+          this.password = password;
+          this.email = email;
+     }
 }

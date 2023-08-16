@@ -10,11 +10,13 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import coffee.pastry.joshuablog.core.auth.MyUserDetails;
 import coffee.pastry.joshuablog.core.exception.ssr.Exception400;
 import coffee.pastry.joshuablog.core.exception.ssr.Exception403;
+import coffee.pastry.joshuablog.core.util.Script;
 import coffee.pastry.joshuablog.dto.user.UserRequestDto;
 import coffee.pastry.joshuablog.model.user.User;
 import coffee.pastry.joshuablog.service.UserService;
@@ -84,5 +86,23 @@ public class UserController {
           User userPS = userService.회원정보보기(id);
           model.addAttribute("user", userPS);
           return "user/updateForm";
+     }
+
+     @PostMapping("/s/user/{id}/update")
+     public @ResponseBody String update(
+               @PathVariable Long id,
+               @Valid UserRequestDto.UpdateInDto updateInDTO,
+               Errors errors,
+               @AuthenticationPrincipal MyUserDetails myUserDetails) {
+          if (id != myUserDetails.getUser().getId()) {
+               throw new Exception403("권한이 없습니다");
+          }
+
+          User user = userService.회원수정(id, updateInDTO);
+
+          // 세션 동기화
+          myUserDetails.setUser(user);
+          session.setAttribute("sessionUser", user);
+          return Script.href("회원정보 수정 성공", "/");
      }
 }

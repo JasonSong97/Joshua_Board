@@ -30,4 +30,24 @@ public class UserRequestDto {
                          .build();
           }
      }
+
+     @Getter
+     @Setter
+     public static class UpdateInDto {
+
+          @NotEmpty
+          private String username;
+          @NotEmpty
+          private String password;
+          @NotEmpty
+          private String email;
+
+          public User toEntity() {
+               return User.builder()
+                         .username(username)
+                         .password(password)
+                         .email(email)
+                         .build();
+          }
+     }
 }

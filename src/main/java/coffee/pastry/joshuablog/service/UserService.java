@@ -74,4 +74,13 @@ public class UserService {
                     () -> new Exception400("id", "해당 유저가 존재하지 않습니다. "));
           return userPS;
      }
+
+     @Transactional
+     public User 회원수정(Long id, UserRequestDto.UpdateInDto updateInDTO) {
+          User userPS = userRepository.findById(id)
+                    .orElseThrow(() -> new Exception400("id", "해당 유저가 존재하지 않습니다. "));
+          updateInDTO.setPassword(passwordEncoder.encode(updateInDTO.getPassword()));
+          userPS.update(updateInDTO.getPassword(), updateInDTO.getEmail());
+          return userPS;
+     }
 }
