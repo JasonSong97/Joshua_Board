@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import coffee.pastry.joshuablog.core.exception.ssr.Exception400;
+import coffee.pastry.joshuablog.core.exception.ssr.Exception403;
+import coffee.pastry.joshuablog.core.exception.ssr.Exception500;
 import coffee.pastry.joshuablog.core.util.MyParseUtil;
 import coffee.pastry.joshuablog.dto.board.BoardRequestDto;
 import coffee.pastry.joshuablog.model.board.Board;
@@ -51,5 +53,21 @@ public class BoardService {
                     () -> new Exception400("id", "게시글 아이디를 찾을 수 없습니다. "));
 
           return boardPS;
+     }
+
+     @Transactional
+     public void 게시글삭제(Long id, Long userId) {
+          Board boardPS = boardRepository.findByIdFetchUser(id).orElseThrow(
+                    () -> new Exception400("id", "게시글 아이디를 찾을 수 없습니다. "));
+
+          if (boardPS.getUser().getId() != userId) {
+               throw new Exception403("권한이 없습니다. ");
+          }
+
+          try {
+               boardRepository.delete(boardPS);
+          } catch (Exception e) {
+               throw new Exception500("게시글 삭제 실패 : " + e.getMessage());
+          }
      }
 }

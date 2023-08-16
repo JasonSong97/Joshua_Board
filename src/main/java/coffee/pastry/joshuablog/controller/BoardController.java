@@ -21,6 +21,12 @@ public class BoardController {
 
      private final BoardService boardService;
 
+     @PostMapping("/s/board/{id}/delete")
+     public String delete(@PathVariable Long id, @AuthenticationPrincipal MyUserDetails myUserDetails) {
+          boardService.게시글삭제(id, myUserDetails.getUser().getId());
+          return "redirect:/";
+     }
+
      @GetMapping({ "/", "/board" })
      public String main(
                @RequestParam(defaultValue = "0") int page,
