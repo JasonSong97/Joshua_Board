@@ -74,4 +74,15 @@ public class UserController {
           session.setAttribute("sessionUser", userPS);
           return "redirect:/";
      }
+
+     @GetMapping("/s/user/{id}/updateForm")
+     public String updateForm(@PathVariable Long id, Model model,
+               @AuthenticationPrincipal MyUserDetails myUserDetails) {
+          if (id != myUserDetails.getUser().getId()) {
+               throw new Exception403("권한이 없습니다");
+          }
+          User userPS = userService.회원정보보기(id);
+          model.addAttribute("user", userPS);
+          return "user/updateForm";
+     }
 }
