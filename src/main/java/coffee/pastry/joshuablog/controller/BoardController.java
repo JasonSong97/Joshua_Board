@@ -1,5 +1,7 @@
 package coffee.pastry.joshuablog.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import coffee.pastry.joshuablog.core.auth.MyUserDetails;
 import coffee.pastry.joshuablog.dto.board.BoardRequestDto;
 import coffee.pastry.joshuablog.model.board.Board;
+import coffee.pastry.joshuablog.model.user.User;
 import coffee.pastry.joshuablog.service.BoardService;
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 
      private final BoardService boardService;
+     private final HttpSession session;
 
      @PostMapping("/s/board/{id}/delete")
      public String delete(@PathVariable Long id, @AuthenticationPrincipal MyUserDetails myUserDetails) {
@@ -53,5 +57,13 @@ public class BoardController {
           Board board = boardService.게시글상세보기(id);
           model.addAttribute("board", board);
           return "board/detail";
+     }
+
+     @GetMapping("/s/board/{id}/updateForm")
+     public String updateForm(@PathVariable Long id,
+               Model model) {
+          User user = (User) session.getAttribute("principal");
+          model.addAttribute("board", boardService.게시글상세보기(id));
+          return "board/updateForm";
      }
 }

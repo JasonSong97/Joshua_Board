@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <%@ include file="../layout/header.jsp" %>
 
 <div class="container my-3">
-    <form class="mb-1">
+    <form>
+        <input type="hidden" id="id" value="${board.id}"/>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter title" name="title" value="글제목">
+            <input value="${board.title}" type="text" class="form-control" placeholder="Enter title" id="title">
         </div>
 
         <div class="form-group">
-            <textarea class="form-control summernote" rows="5" name="content">글내용</textarea>
+            <textarea class="form-control summernote" rows="5" id="content">${board.content}</textarea>
         </div>
-        <button type="button" class="btn btn-primary">글수정완료</button>
     </form>
+    <button id="btn-update" class="btn btn-primary">게시글 수정완료</button>
 </div>
 
 <script>
@@ -21,5 +21,5 @@
         height: 500
     });
 </script>
-
+<script src="/js/board.js"></script>
 <%@ include file="../layout/footer.jsp" %>

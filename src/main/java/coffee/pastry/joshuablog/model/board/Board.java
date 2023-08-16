@@ -50,4 +50,12 @@ public class Board {
      protected void onUpdate() {
           this.updatedAt = LocalDateTime.now();
      }
+
+     public void chaengeTitle(String title) {
+          this.title = title;
+     }
+
+     public void changeContent(String content) {
+          this.content = content;
+     }
 }

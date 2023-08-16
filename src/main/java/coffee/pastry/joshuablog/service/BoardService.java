@@ -1,6 +1,7 @@
 package coffee.pastry.joshuablog.service;
 
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +36,7 @@ public class BoardService {
 
                boardRepository.save(saveInDto.toEntity(userPS, thumbnail));
           } catch (Exception e) {
-               throw new RuntimeException("글쓰기 실패 : " + e.getMessage());
+               throw new Exception500("글쓰기 실패 : " + e.getMessage());
           }
      }
 
@@ -51,7 +52,6 @@ public class BoardService {
      public Board 게시글상세보기(Long id) {
           Board boardPS = boardRepository.findByIdJoinFetchUser(id).orElseThrow(
                     () -> new Exception400("id", "게시글 아이디를 찾을 수 없습니다. "));
-
           return boardPS;
      }
 
@@ -69,5 +69,13 @@ public class BoardService {
           } catch (Exception e) {
                throw new Exception500("게시글 삭제 실패 : " + e.getMessage());
           }
+     }
+
+     @Transactional
+     public void 게시글수정(Long id, Board requestBoard) {
+          Board boardPS = boardRepository.findById(id).orElseThrow(
+                    () -> new Exception400("id", "게시글 아이디를 찾을 수 없습니다. "));
+          boardPS.chaengeTitle(requestBoard.getTitle());
+          boardPS.changeContent(requestBoard.getContent());
      }
 }

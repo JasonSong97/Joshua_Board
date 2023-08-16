@@ -81,7 +81,7 @@ public class UserController {
      public String updateForm(@PathVariable Long id, Model model,
                @AuthenticationPrincipal MyUserDetails myUserDetails) {
           if (id != myUserDetails.getUser().getId()) {
-               throw new Exception403("권한이 없습니다");
+               throw new Exception403("권한이 없습니다. ");
           }
           User userPS = userService.회원정보보기(id);
           model.addAttribute("user", userPS);
@@ -95,7 +95,7 @@ public class UserController {
                Errors errors,
                @AuthenticationPrincipal MyUserDetails myUserDetails) {
           if (id != myUserDetails.getUser().getId()) {
-               throw new Exception403("권한이 없습니다");
+               throw new Exception403("권한이 없습니다. ");
           }
 
           User user = userService.회원수정(id, updateInDTO);
