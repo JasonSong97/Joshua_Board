@@ -226,7 +226,7 @@ public class UserController {
           // joshuaKey));
           // SecurityContextHolder.getContext().setAuthentication(authentication);
 
-          return "회원가입 완료 : ";
+          return "회원가입 완료 : 카카오 정보 : " + response2.getBody();
 
      }
 }
