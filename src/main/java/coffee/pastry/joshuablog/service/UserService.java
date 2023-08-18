@@ -39,7 +39,6 @@ public class UserService {
           } catch (Exception e) {
                throw new Exception500("회원가입 실패 : " + e.getMessage());
           }
-
      }
 
      public User 회원프로필보기(Long id) {
@@ -82,5 +81,12 @@ public class UserService {
           updateInDTO.setPassword(passwordEncoder.encode(updateInDTO.getPassword()));
           userPS.update(updateInDTO.getPassword(), updateInDTO.getEmail());
           return userPS;
+     }
+
+     public User 회원찾기(String username) {
+          User user = userRepository.findByUsername(username).orElseGet(() -> {
+               return new User();
+          });
+          return user;
      }
 }

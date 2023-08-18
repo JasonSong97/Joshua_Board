@@ -1,6 +1,5 @@
 package coffee.pastry.joshuablog.controller.api;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import coffee.pastry.joshuablog.dto.ResponseDTO;
 import coffee.pastry.joshuablog.model.board.Board;
 import coffee.pastry.joshuablog.service.BoardService;
 import lombok.RequiredArgsConstructor;

@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Table(name = "user_tb")
 @AllArgsConstructor
 @Getter
@@ -28,15 +28,18 @@ public class User {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
-     @Column(unique = true, length = 20)
+     @Column(nullable = false, unique = true, length = 100)
      private String username;
-     @Column(length = 60)
+     @Column(nullable = false, length = 60)
      private String password;
-     @Column(length = 50)
+     @Column(nullable = false, length = 50)
      private String email;
      private String role;
      private String profile;
      private Boolean status;
+
+     private String oauth;
+
      private LocalDateTime createdAt;
      private LocalDateTime updatedAt;
 

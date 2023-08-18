@@ -28,6 +28,10 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Board {
 
+     /**
+      * 1명의 User N개의 게시글 + 1개의 게시글 1명의 User => User:Board=1:N
+      */
+
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;

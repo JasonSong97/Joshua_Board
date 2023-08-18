@@ -42,7 +42,9 @@ public class SecurityConfig {
                     }));
 
           http.authorizeRequests(
-                    authorize -> authorize.antMatchers("/s/**").authenticated()
+                    authorize -> authorize
+                              .antMatchers("/s/**")
+                              .authenticated()
                               .anyRequest().permitAll());
 
           return http.build();
