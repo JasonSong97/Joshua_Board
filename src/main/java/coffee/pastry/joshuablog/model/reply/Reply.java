@@ -54,4 +54,9 @@ public class Reply {
      protected void onUpdate() {
           this.updatedAt = LocalDateTime.now();
      }
+
+     public void writeReply(User user, Board board) {
+          this.user = user;
+          this.board = board;
+     }
 }

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -49,6 +50,7 @@ public class Board {
      private User user;
      @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
      @JsonIgnoreProperties({ "board" }) // 무한참조 방지...드디어...
+     @OrderBy("id desc")
      private List<Reply> replys;
 
      private LocalDateTime createdAt;

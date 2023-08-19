@@ -12,6 +12,8 @@ import coffee.pastry.joshuablog.dto.board.BoardRequestDto;
 import coffee.pastry.joshuablog.model.board.Board;
 import coffee.pastry.joshuablog.model.board.BoardQueryRepository;
 import coffee.pastry.joshuablog.model.board.BoardRepository;
+import coffee.pastry.joshuablog.model.reply.Reply;
+import coffee.pastry.joshuablog.model.reply.ReplyReopsitory;
 import coffee.pastry.joshuablog.model.user.User;
 import coffee.pastry.joshuablog.model.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class BoardService {
 
      private final BoardRepository boardRepository;
      private final UserRepository userRepository;
+     private final ReplyReopsitory replyReopsitory;
      private final BoardQueryRepository boardQueryRepository;
 
      @Transactional
@@ -76,5 +79,17 @@ public class BoardService {
                     () -> new Exception400("id", "게시글 아이디를 찾을 수 없습니다. "));
           boardPS.chaengeTitle(requestBoard.getTitle());
           boardPS.changeContent(requestBoard.getContent());
+     }
+
+     /**
+      * 
+      * 댓글
+      */
+     @Transactional
+     public void 댓글쓰기(User user, Long boardId, Reply requestReply) {
+          Board boardPS = boardRepository.findById(boardId).orElseThrow(
+                    () -> new Exception400("id", "게시글 아이디를 찾을 수 없습니다. "));
+          requestReply.writeReply(user, boardPS);
+          replyReopsitory.save(requestReply);
      }
 }
