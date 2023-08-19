@@ -65,7 +65,6 @@ let index = {
             url: "/api/board/" + id,
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
-            dataType: "json"
         }).done((res) => { 
             alert("게시글이 수정되었습니다. ");
             location.href = "/";
@@ -87,7 +86,6 @@ let index = {
             url: `/api/board/${boardId}/reply`,
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
-            dataType: "json"
         }).done((res) => { 
             alert("댓글 작성이 완료었습니다. ");
             location.href = `/board/${boardId}`;
