@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-
 import coffee.pastry.joshuablog.model.board.Board;
 import coffee.pastry.joshuablog.model.user.User;
 import lombok.AccessLevel;
@@ -42,7 +41,9 @@ public class Reply {
      private Board board;
      @ManyToOne
      private User user;
+     // @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
      private LocalDateTime createdAt;
+     // @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
      private LocalDateTime updatedAt;
 
      @PrePersist

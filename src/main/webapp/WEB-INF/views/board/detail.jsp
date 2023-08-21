@@ -56,10 +56,13 @@
             <c:forEach var="reply" items="${board.replys}">
                 <li id="reply-${reply.id}" class="list-group-item d-flex justify-content-between">
                     <div>${reply.content}</div>
-                    <div class="d-flex">
-                        <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
-                        <button onClick="index.replyDelete(${board.id}, ${reply.id})" class="badge bg-secondary">삭제</button>
-                    </div>
+                        <div class="d-flex">
+                            <div class="font-italic"><strong>작성자</strong> : ${reply.user.username} &nbsp;</div>
+                            <div class="font-italic"><strong>작성날짜</strong> : ${reply.createdAt} &nbsp;</div> <!--날짜 check-->
+                            <c:if test="${sessionUser.id == reply.user.id}">
+                                <button onClick="index.replyDelete(${board.id}, ${reply.id})" class="badge bg-secondary">삭제</button>
+                            </c:if>
+                        </div>
                 </li>
             </c:forEach>
         </ul>

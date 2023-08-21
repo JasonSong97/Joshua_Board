@@ -38,9 +38,7 @@ public class BoardApiController {
 
      @DeleteMapping("/board/{boardId}/reply/{replyId}")
      public ResponseEntity<?> replyDelete(@PathVariable Long replyId) {
-          System.out.println("테스트 : ");
           boardService.댓글삭제(replyId);
-          System.out.println("테스트 : ");
           return ResponseEntity.ok().build();
      }
 }
