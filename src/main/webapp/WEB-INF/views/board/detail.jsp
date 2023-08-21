@@ -34,8 +34,11 @@
     </div>
 
     <hr/>
-    <i id="heart" class="fa-regular fa-heart fa-lg"></i>
+    <!-- 러브 -->
+    <i class="fas fa-heart active" id="storyLikeIcon-${board.id}" onclick="toggleLike(${board.id})"></i>
 
+
+    <!-- 등록 -->
     <div class="card mt-3">
         <form>
             <input type="hidden" id="boardId" value="${board.id}"/>
@@ -50,6 +53,7 @@
 
     <br/>
     
+    <!-- 댓글 -->
     <div class="card">
         <div class="card-header">댓글 리스트</div>
         <ul id="reply-box" class="list-group">

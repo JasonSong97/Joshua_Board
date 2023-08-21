@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import coffee.pastry.joshuablog.model.love.Love;
 import coffee.pastry.joshuablog.model.reply.Reply;
 import coffee.pastry.joshuablog.model.user.User;
 import lombok.AccessLevel;
@@ -53,6 +54,8 @@ public class Board {
      @JsonIgnoreProperties({ "board" }) // 무한참조 방지...드디어...
      @OrderBy("id desc")
      private List<Reply> replys;
+     @OneToMany(mappedBy = "board")
+     private List<Love> loves;
 
      private LocalDateTime createdAt;
      private LocalDateTime updatedAt;

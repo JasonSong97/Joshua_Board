@@ -12,6 +12,7 @@ let index = {
         $("#btn-reply-save").on("click", ()=>{
         this.replySave();
         });
+
     },
 
     save: function(){
@@ -106,6 +107,19 @@ let index = {
             alert(JSON.stringify(err));
         });
     },
+}
+
+function toggleLike(boardId) {
+    let loveIcon = $(`#boardLoveIcon-${board.id}`);
+    if (loveIcon.hasClass("far")) {
+        loveIcon.addClass("fas");
+        loveIcon.addClass("active");
+        loveIcon.removeClass("far");
+    } else {
+        loveIcon.removeClass("fas");
+        loveIcon.removeClass("active");
+        loveIcon.addClass("far");
+    }
 }
 
 index.init();
