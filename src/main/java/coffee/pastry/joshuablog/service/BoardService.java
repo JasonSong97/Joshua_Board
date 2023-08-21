@@ -92,4 +92,9 @@ public class BoardService {
           requestReply.writeReply(user, boardPS);
           replyReopsitory.save(requestReply);
      }
+
+     @Transactional
+     public void 댓글삭제(Long replyId) {
+          replyReopsitory.deleteById(replyId);
+     }
 }

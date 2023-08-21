@@ -3,6 +3,7 @@ package coffee.pastry.joshuablog.model.board;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -48,7 +49,7 @@ public class Board {
      private String thumbnail;
      @ManyToOne
      private User user;
-     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
      @JsonIgnoreProperties({ "board" }) // 무한참조 방지...드디어...
      @OrderBy("id desc")
      private List<Reply> replys;

@@ -1,8 +1,8 @@
 package coffee.pastry.joshuablog.controller.api;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +33,14 @@ public class BoardApiController {
      public ResponseEntity<?> replySave(@PathVariable Long boardId, @RequestBody Reply reply,
                @AuthenticationPrincipal MyUserDetails myUserDetails) {
           boardService.댓글쓰기(myUserDetails.getUser(), boardId, reply);
+          return ResponseEntity.ok().build();
+     }
+
+     @DeleteMapping("/board/{boardId}/reply/{replyId}")
+     public ResponseEntity<?> replyDelete(@PathVariable Long replyId) {
+          System.out.println("테스트 : ");
+          boardService.댓글삭제(replyId);
+          System.out.println("테스트 : ");
           return ResponseEntity.ok().build();
      }
 }
