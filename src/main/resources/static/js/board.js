@@ -109,8 +109,9 @@ let index = {
     },
 }
 
-function toggleLike(boardId) {
-    let loveIcon = $(`#boardLoveIcon-${board.id}`);
+function toggleLove(boardId) {
+    let loveIcon = $(`#boardLoveIcon-${boardId}`);
+
     if (loveIcon.hasClass("far")) {
         loveIcon.addClass("fas");
         loveIcon.addClass("active");

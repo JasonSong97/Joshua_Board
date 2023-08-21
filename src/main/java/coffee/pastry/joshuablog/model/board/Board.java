@@ -16,6 +16,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -54,8 +55,11 @@ public class Board {
      @JsonIgnoreProperties({ "board" }) // 무한참조 방지...드디어...
      @OrderBy("id desc")
      private List<Reply> replys;
+     @JsonIgnoreProperties({ "board" }) // 무한참조 방지
      @OneToMany(mappedBy = "board")
      private List<Love> loves;
+     @Transient // DB 컬럼 생성 X
+     private boolean loveState;
 
      private LocalDateTime createdAt;
      private LocalDateTime updatedAt;

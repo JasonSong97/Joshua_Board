@@ -34,8 +34,15 @@
     </div>
 
     <hr/>
+
     <!-- 러브 -->
-    <i class="fas fa-heart active" id="storyLikeIcon-${board.id}" onclick="toggleLike(${board.id})"></i>
+    <c:if test="${board.loveState}">
+        <i class="fas fa-heart active" id="boardLoveIcon-${board.id}" onclick="toggleLove(${board.id})"></i>
+    </c:if>
+    <i class="far fa-heart" id="boardLoveIcon-${board.id}" onclick="toggleLove(${board.id})"></i>
+
+
+    <span class="like"><b id="storyLikeCount-1">3 </b>likes</span>
 
 
     <!-- 등록 -->

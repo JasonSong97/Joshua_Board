@@ -13,6 +13,7 @@ import coffee.pastry.joshuablog.core.auth.MyUserDetails;
 import coffee.pastry.joshuablog.model.board.Board;
 import coffee.pastry.joshuablog.model.reply.Reply;
 import coffee.pastry.joshuablog.service.BoardService;
+import coffee.pastry.joshuablog.service.LoveService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -21,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardApiController {
 
      private final BoardService boardService;
+     private final LoveService loveService;
 
      @PostMapping("/board/{id}")
      public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Board board) {
@@ -28,7 +30,9 @@ public class BoardApiController {
           return ResponseEntity.ok().body(null);
      }
 
-     // Reply
+     /**
+      * Replt
+      */
      @PostMapping("/board/{boardId}/reply")
      public ResponseEntity<?> replySave(@PathVariable Long boardId, @RequestBody Reply reply,
                @AuthenticationPrincipal MyUserDetails myUserDetails) {
@@ -39,6 +43,23 @@ public class BoardApiController {
      @DeleteMapping("/board/{boardId}/reply/{replyId}")
      public ResponseEntity<?> replyDelete(@PathVariable Long replyId) {
           boardService.댓글삭제(replyId);
+          return ResponseEntity.ok().build();
+     }
+
+     /**
+      * Love
+      */
+     @PostMapping("/board/{boardId}/love")
+     public ResponseEntity<?> love(@PathVariable Long boardId,
+               @AuthenticationPrincipal MyUserDetails myUserDetails) {
+          loveService.하트누르기(boardId, myUserDetails.getUser().getId());
+          return ResponseEntity.ok().build();
+     }
+
+     @DeleteMapping("/board/{boardId}/love")
+     public ResponseEntity<?> unLove(@PathVariable Long boardId,
+               @AuthenticationPrincipal MyUserDetails myUserDetails) {
+          loveService.하트취소하기(boardId, myUserDetails.getUser().getId());
           return ResponseEntity.ok().build();
      }
 }

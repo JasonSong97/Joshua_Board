@@ -7,10 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import coffee.pastry.joshuablog.model.board.Board;
 import coffee.pastry.joshuablog.model.user.User;
 import lombok.AccessLevel;
@@ -23,7 +26,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Table(name = "reply_tb")
+@Table(name = "reply_tb", uniqueConstraints = {
+          @UniqueConstraint(name = "love_uk", columnNames = { "boardId", "userId" }) })
 @Entity
 public class Reply {
 
@@ -38,8 +42,10 @@ public class Reply {
      @Column(nullable = false, length = 200)
      private String content;
      @ManyToOne
+     @JoinColumn(name = "boardId")
      private Board board;
      @ManyToOne
+     @JoinColumn(name = "userId")
      private User user;
      // @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
      private LocalDateTime createdAt;

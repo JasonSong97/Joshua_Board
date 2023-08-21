@@ -6,10 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import coffee.pastry.joshuablog.model.board.Board;
 import coffee.pastry.joshuablog.model.user.User;
@@ -37,7 +37,7 @@ public class Love {
      private Long id;
      @ManyToOne // 무한참조 check
      private Board board;
-     @ManyToOne // 무한참모 check
+     @ManyToOne // 무한참조 check
      private User user;
      private LocalDateTime createdAt;
 
