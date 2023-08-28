@@ -99,8 +99,8 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2023 [JUnit bank](https://github.com/JasonSong97/junit-bank).<br />
-This project is [MIT](https://github.com/JasonSong97/junit-bank/blob/main/LICENSE) licensed.
+Copyright © 2023 [Joshua_Board](https://github.com/JasonSong97/Joshua_Board).<br />
+This project is [MIT](https://github.com/JasonSong97/Joshua_Board/blob/main/LICENSE) licensed.
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
