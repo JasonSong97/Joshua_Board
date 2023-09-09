@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> Joshua Board Back-End Server
+> Joshua Board Back End Server
 
 <p align="center">
 <img src="https://github.com/JasonSong97/Joshua_Board/assets/107292103/568d8723-966c-4ec9-8661-97509e87b0f9" width="70%" height="70%"/>
