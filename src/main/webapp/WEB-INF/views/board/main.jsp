@@ -17,7 +17,9 @@
                 <img class="card-img-top" style="height: 250px;" src="${board.thumbnail}">
                 <hr/>
                 <div class="card-body">
-                    <div>작성자 : ${board.user.username}</div>
+                    <div style="font-weight: bold;">작성자 : ${board.user.username}</div>
+                    <div style="font-weight: bold;">댓글 : ${fn:length(board.replys)}</div>
+                    <hr/>
                     <h4 class="card-title my-text-ellipsis">${board.title}</h4>
                     <a href="/board/${board.id}" class="btn btn-primary">상세보기</a>
                 </div>
