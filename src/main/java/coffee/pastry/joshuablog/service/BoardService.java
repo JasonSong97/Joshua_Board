@@ -87,8 +87,10 @@ public class BoardService {
       */
      @Transactional
      public void 댓글쓰기(User user, Long boardId, Reply requestReply) {
+          System.out.println("테스트 : @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
           Board boardPS = boardRepository.findById(boardId).orElseThrow(
                     () -> new Exception400("id", "게시글 아이디를 찾을 수 없습니다. "));
+          System.out.println("테스트 : @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
           requestReply.writeReply(user, boardPS);
           replyReopsitory.save(requestReply);
      }
