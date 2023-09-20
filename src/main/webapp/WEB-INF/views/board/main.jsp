@@ -18,7 +18,9 @@
                 <hr/>
                 <div class="card-body">
                     <div style="font-weight: bold;">작성자 : ${board.user.username}</div>
-                    <div style="font-weight: bold;">댓글 : ${fn:length(board.replys)}</div>
+                    <div style="font-weight: bold;">댓글 개수 : ${fn:length(board.replys)}</div>
+                    <!-- 좋아요 아이콘 추가 -->
+                    <i class="fas fa-heart active"></i>
                     <hr/>
                     <h4 class="card-title my-text-ellipsis">${board.title}</h4>
                     <a href="/board/${board.id}" class="btn btn-primary">상세보기</a>
